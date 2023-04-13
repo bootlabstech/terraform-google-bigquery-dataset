@@ -6,4 +6,11 @@ resource "google_bigquery_dataset" "dataset" {
   default_encryption_configuration {
     kms_key_name = var.kms_key_name
   }
+  lifecycle {
+     ignore_changes = [
+# Ignore changes to tags, e.g. because a management agent
+# updates these based on some ruleset managed elsewhere.
+          labels,
+ ]
+ }
 }
