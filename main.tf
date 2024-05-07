@@ -24,4 +24,4 @@ resource "google_project_iam_binding" "network_binding3" {
     "serviceAccount:service-${data.google_project.service_project.number}@gs-project-accounts.iam.gserviceaccount.com",
   ]
 }
-}
+
