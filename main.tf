@@ -13,6 +13,7 @@ resource "google_bigquery_dataset" "dataset" {
           labels,
  ]
  }
+  depends_on = [ google_project_iam_binding.network_binding3 ]
 }
  data "google_project" "service_project2" {
   project_id = var.project_id
