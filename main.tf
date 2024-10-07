@@ -21,6 +21,9 @@ resource "google_bigquery_dataset" "dataset" {
 resource "google_project_iam_binding" "network_binding3" {
   count   = 1
   project = var.project_id
+  lifecycle {
+    ignore_changes = [ members ]
+  }
   role    = "roles/cloudkms.cryptoKeyEncrypterDecrypter"
   members = [
     "serviceAccount:bq-${data.google_project.service_project2.number}@bigquery-encryption.iam.gserviceaccount.com",
