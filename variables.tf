@@ -16,5 +16,7 @@ variable "location" {
 }
 variable "kms_key_name" {
   type        = string
-  description = "The name of the kms for encrypting the dataset."
+  description = "The name of the kms for encrypting and decrypting the dataset."
 }
+
+
