@@ -13,7 +13,7 @@ resource "google_bigquery_dataset" "dataset" {
           labels,
  ]
  }
-  depends_on = [ google_project_iam_binding.network_binding3 ]
+  depends_on = [google_project_service_identity.sa, google_project_iam_binding.network_binding3]
 }
  data "google_project" "service_project2" {
   project_id = var.project_id
@@ -29,5 +29,8 @@ resource "google_project_iam_binding" "network_binding3" {
     "serviceAccount:bq-${data.google_project.service_project2.number}@bigquery-encryption.iam.gserviceaccount.com",
   ]
 }
-
-
+resource "google_project_service_identity" "sa" {
+  provider = google-beta
+  project  = var.project_id
+  service  = "bigquery.googleapis.com"
+}
